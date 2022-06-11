@@ -1,9 +1,8 @@
 package emailapp;
 
-import java.util.Locale;
 import java.util.Scanner;
 
-public class Email {
+public class Email extends EmailApp {
     private final String firstName;
     private final String lastName;
     private String password;
@@ -32,18 +31,19 @@ public class Email {
     }
     //Ask for the department
     private String setDepartment() {
-        System.out.print("New worker: " + firstName + ". Department Codes: \n1 for Sales\n2 for Development\n3 for Accounting\n0 for none\nEnter department code:");
-        Scanner in = new Scanner(System.in);
-        int depChoice = in.nextInt();
-        if (depChoice == 1) {
-            return "sales";
-        } else if (depChoice == 2) {
-            return "dev";
-        } else if (depChoice == 3) {
-            return "acct";
-        } else {
-            return "";
-        }
+        System.out.print("New worker: " + firstName + " " + lastName  + "." + "\n Department Codes: \n1 for Sales\n2 for Development\n3 for Accounting\n0 for none\nEnter department code:");
+        try (Scanner in = new Scanner(System.in)) {
+			int depChoice = in.nextInt();
+			if (depChoice == 1) {
+			    return "sales";
+			} else if (depChoice == 2) {
+			    return "dev";
+			} else if (depChoice == 3) {
+			    return "acct";
+			} else {
+			    return "";
+			}
+		}
     }
     // Generate a random password
     private String randomPassword(int length) {
@@ -77,7 +77,7 @@ public class Email {
     } public String getPassword() {
         return password;
     } public String showInfo(){
-        return "DISPLAY NAME: " + firstName + " " + lastName +
+        return "NAME: " + firstName + " " + lastName +
                 "\nCOMPANY EMAIL: " + email +
                 "\nMAILBOX CAPACITY: " + mailboxCapacity + "mb";
     }
